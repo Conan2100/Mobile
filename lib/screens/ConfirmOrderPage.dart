@@ -88,12 +88,16 @@ class _ConfirmPageState extends State<ConfirmPage> {
           subtotal - discountFromPoints - discountFromCode;
       double vatAmount = subtotalAfterDiscount * vat;
 
+<<<<<<< HEAD
       total =
           subtotal -
           discountFromPoints -
           discountFromCode +
           vatAmount +
           shippingFee;
+=======
+      total = subtotalAfterDiscount + vatAmount + shippingFee;
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
 
       if (total < 0) total = 0;
     }

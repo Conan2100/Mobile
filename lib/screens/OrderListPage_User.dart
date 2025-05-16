@@ -67,12 +67,22 @@ class _OrderListPageState extends State<OrderListPage> {
                 'status': statusMap,
                 'statusKey': latestStatus,
                 'statusUpdateDate': statusUpdateDate,
+<<<<<<< HEAD
                 'total': data['total'] ?? 0,
                 'subtotal': data['subtotal'] ?? 0,
                 'shippingFee': data['shippingFee'] ?? 0,
                 'vat': data['vat'] ?? 0,
                 'discountFromCode': data['discountFromCode'] ?? 0,
                 'discountFromPoints': data['discountFromPoints'] ?? 0,
+=======
+                'totalAmount': data['total']?.toDouble() ?? 0.0,
+                'subtotal': data['subtotal']?.toDouble() ?? 0.0,
+                'shippingFee': data['shippingFee']?.toDouble() ?? 0.0,
+                'vat': data['vat']?.toDouble() ?? 0.0,
+                'discountFromCode': data['discountFromCode']?.toDouble() ?? 0.0,
+                'discountFromPoints':
+                    data['discountFromPoints']?.toDouble() ?? 0.0,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
                 'email': data['email'] ?? '',
                 'phoneNumber': data['phoneNumber'] ?? '',
                 'fullName': data['fullName'] ?? '',
@@ -155,7 +165,11 @@ class _OrderListPageState extends State<OrderListPage> {
                   Text('Ngày đặt: ${order['orderDate']}'),
                   const SizedBox(height: 8),
                   Text(
+<<<<<<< HEAD
                     'Tổng tiền: ${util.moneyFormat(order['total'])} (${order['items'].length} sản phẩm)',
+=======
+                    'Tổng tiền: ${util.moneyFormat(order['totalAmount'])} (${order['items'].length} sản phẩm)',
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
                     style: const TextStyle(fontSize: 14),
                   ),
                   const SizedBox(height: 8),

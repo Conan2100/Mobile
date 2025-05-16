@@ -21,7 +21,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _orders = 0;
   double _totalRevenue = 0;
   DateTimeRange? _selectedDateRange;
+<<<<<<< HEAD
   String _selectedViewMode = 'Theo năm';
+=======
+  String _selectedViewMode = 'Theo tháng';
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
   List<RevenueData> _chartData = [];
   List<MonthlyRevenueData> _monthlyChartData = [];
   List<QuarterlyRevenueData> _quarterlyChartData = [];
@@ -94,6 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(
                   _selectedDateRange!.start,
                 ),
@@ -103,11 +108,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 isLessThan: normalizeDate(
                   _selectedDateRange!.end.add(const Duration(days: 1)),
                 ),
+=======
+                isGreaterThanOrEqualTo: _selectedDateRange!.start,
+                isLessThanOrEqualTo: _selectedDateRange!.end,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               )
               .get();
 
       for (final doc in orderSnapshot.docs) {
+<<<<<<< HEAD
         print(doc); // Added for debugging
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
         final data = doc.data() as Map<String, dynamic>;
         final orderDate =
             data['orderDate'] != null
@@ -116,6 +128,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final orderId = data['orderId'] ?? '';
         final total = (data['total'] ?? 0).toDouble();
 
+<<<<<<< HEAD
         // Chỉ tính các đơn hàng trong ngày được chọn
         if (isSameDay(orderDate, _selectedDateRange!.start) ||
             isSameDay(orderDate, _selectedDateRange!.end) ||
@@ -125,6 +138,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
           _totalRevenue += total;
           _orderData.add(OrderData(_formatDate(orderDate), orderId, total));
         }
+=======
+        _orders++;
+        _totalRevenue += total;
+        _orderData.add(OrderData(_formatDate(orderDate), orderId, total));
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       }
     } catch (e) {
       print("Error fetching order data: $e");
@@ -134,6 +152,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   }
 
+<<<<<<< HEAD
   // Hàm tiện ích để chuẩn hóa DateTime (loại bỏ thời gian)
   DateTime normalizeDate(DateTime date) {
     return DateTime(date.year, date.month, date.day);
@@ -146,6 +165,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         date1.day == date2.day;
   }
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
   void _updateChartData() {
     List<RevenueData> newData = [];
     if (_selectedDateRange != null) {
@@ -178,6 +199,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       final dailyOrderSnapshot =
           await _firestore
               .collection('orders')
+<<<<<<< HEAD
               .where('orderDate', isGreaterThanOrEqualTo: normalizeDate(date))
               .where(
                 'orderDate',
@@ -185,6 +207,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
               )
               .get();
 
+=======
+              .where(
+                'orderDate',
+                isGreaterThanOrEqualTo: date,
+                isLessThan: date.add(const Duration(days: 1)),
+              )
+              .get();
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       for (final doc in dailyOrderSnapshot.docs) {
         final data = doc.data();
         dailyRevenue += (data['total'] ?? 0).toDouble();
@@ -239,8 +269,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(monthDate),
                 isLessThan: normalizeDate(nextMonth),
+=======
+                isGreaterThanOrEqualTo: monthDate,
+                isLessThan: nextMonth,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               )
               .get();
       for (final doc in monthlyOrderSnapshot.docs) {
@@ -324,8 +359,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(quarterStartDate),
                 isLessThanOrEqualTo: normalizeDate(quarterEndDate),
+=======
+                isGreaterThanOrEqualTo: quarterStartDate,
+                isLessThanOrEqualTo: quarterEndDate,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               )
               .get();
       for (final doc in quarterlyOrderSnapshot.docs) {
@@ -375,8 +415,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(yearStartDate),
                 isLessThanOrEqualTo: normalizeDate(yearEndDate),
+=======
+                isGreaterThanOrEqualTo: yearStartDate,
+                isLessThanOrEqualTo: yearEndDate,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               )
               .get();
       for (final doc in yearlyOrderSnapshot.docs) {
@@ -431,8 +476,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(weekStartDate),
                 isLessThanOrEqualTo: normalizeDate(weekEndDate),
+=======
+                isGreaterThanOrEqualTo: weekStartDate,
+                isLessThanOrEqualTo: weekEndDate,
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               )
               .get();
       for (final doc in weeklyOrderSnapshot.docs) {
@@ -446,12 +496,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Future<void> _updateBestSellingProducts() async {
+<<<<<<< HEAD
     try {
       final snapshot =
+=======
+    _bestSellingProducts.clear();
+    try {
+      // Get orders within the selected date range
+      final orderSnapshot =
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
           await _firestore
               .collection('orders')
               .where(
                 'orderDate',
+<<<<<<< HEAD
                 isGreaterThanOrEqualTo: normalizeDate(
                   _selectedDateRange!.start,
                 ),
@@ -485,10 +543,37 @@ class _DashboardScreenState extends State<DashboardScreen> {
               'productName': name,
               'quantity': quantity,
             };
+=======
+                isGreaterThanOrEqualTo: _selectedDateRange!.start,
+                isLessThanOrEqualTo: _selectedDateRange!.end,
+              )
+              .get();
+
+      // A map to store the quantity of each product
+      Map<String, int> productQuantities = {};
+
+      for (final orderDoc in orderSnapshot.docs) {
+        final orderData = orderDoc.data();
+        final items = orderData['items'] as List<dynamic>? ?? [];
+
+        for (var item in items) {
+          final productId = item['productId'] as String?;
+          final productName = item['productName'] as String?;
+          final quantity = item['quantity'] as int?;
+
+          if (productId != null && productName != null && quantity != null) {
+            final key = '$productId - $productName'; // Create a unique key
+            if (productQuantities.containsKey(key)) {
+              productQuantities[key] = productQuantities[key]! + quantity;
+            } else {
+              productQuantities[key] = quantity;
+            }
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
           }
         }
       }
 
+<<<<<<< HEAD
       final products = productMap.values.toList();
 
       // Sắp xếp giảm dần theo số lượng bán
@@ -500,6 +585,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _bestSellingProducts = products.take(10).toList();
     } catch (e) {
       print("Error fetching best selling products: $e");
+=======
+      // Sort the products by quantity in descending order
+      final sortedProducts =
+          productQuantities.entries.toList()
+            ..sort((a, b) => b.value.compareTo(a.value));
+
+      // Take the top 5 products
+      final topSellingProducts = sortedProducts.take(10);
+
+      // Convert the result to the desired format
+      _bestSellingProducts =
+          topSellingProducts.map((entry) {
+            final key = entry.key.split(' - ');
+            return {
+              'productId': key[0],
+              'name': key[1],
+              'quantity': entry.value,
+            };
+          }).toList();
+    } catch (e) {
+      print('Error fetching best selling products: $e');
+      // Handle the error appropriately
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       _bestSellingProducts = [];
     } finally {
       if (mounted) setState(() {});
@@ -529,6 +637,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildTopCards(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+<<<<<<< HEAD
         // Kích thước card tối thiểu
         const minCardWidth = 200.0;
 
@@ -563,6 +672,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ];
 
         return Wrap(spacing: 16.0, runSpacing: 16.0, children: cards);
+=======
+        final cardWidth = (constraints.maxWidth - 48) / 4;
+        return Wrap(
+          spacing: 16.0,
+          runSpacing: 16.0,
+          children: [
+            _buildStatCard(
+              'Người dùng',
+              _userRatio,
+              Icons.person,
+              width: cardWidth,
+            ),
+            _buildStatCard(
+              'Đơn hàng',
+              '$_orders',
+              Icons.shopping_cart,
+              width: cardWidth,
+            ),
+            _buildStatCard(
+              'Tổng tiền',
+              moneyFormat(_totalRevenue),
+              Icons.attach_money,
+              width: cardWidth,
+            ),
+            _buildTimePeriodDropdown(context, width: cardWidth),
+          ],
+        );
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       },
     );
   }
@@ -570,6 +707,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildMiddleCards(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+<<<<<<< HEAD
         final maxWidth = constraints.maxWidth;
 
         // Ngưỡng để chuyển layout: 600 px (bạn có thể điều chỉnh)
@@ -597,6 +735,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           );
         }
+=======
+        final double orderListWidth = constraints.maxWidth * 2 / 5;
+        final double revenueChartWidth = constraints.maxWidth * 3 / 5 - 16;
+        return Wrap(
+          spacing: 16.0,
+          runSpacing: 16.0,
+          children: [
+            _buildRevenueChartCard(width: revenueChartWidth),
+            _buildOrderListCard(width: orderListWidth),
+          ],
+        );
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       },
     );
   }
@@ -855,18 +1005,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   title = _monthlyChartData[groupIndex].monthName;
                   break;
                 case 'Theo quý':
+<<<<<<< HEAD
                   final data = _quarterlyChartData[groupIndex];
                   title = 'Quý ${data.quarter}/${data.year}';
+=======
+                  title = 'Quý ${groupIndex + 1}';
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
                   break;
                 case 'Theo năm':
                   title = _yearlyChartData[groupIndex].year.toString();
                   break;
               }
+<<<<<<< HEAD
 
               double revenue = double.parse(rod.toY.toStringAsFixed(2));
 
               return BarTooltipItem(
                 '$title\nDoanh số: ${moneyFormat(revenue)}',
+=======
+              String revenue = rod.toY.toStringAsFixed(2);
+              return BarTooltipItem(
+                '$title\nRevenue: \$$revenue',
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
                 const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -949,7 +1109,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   );
                 }
                 break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               case 'Theo năm':
                 if (index >= 0 && index < _yearlyChartData.length) {
                   return Text(
@@ -974,8 +1137,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildOrderListCard({double? width}) {
+<<<<<<< HEAD
     final hasData = _orderData.isNotEmpty;
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
     return SizedBox(
       width: width,
       height: 300,
@@ -991,6 +1157,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
+<<<<<<< HEAD
 
               // Nếu có dữ liệu -> hiển thị danh sách, ngược lại -> hiển thị thông báo
               Expanded(
@@ -1035,6 +1202,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                         ),
+=======
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _orderData.length,
+                  itemBuilder: (context, index) {
+                    final order = _orderData[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            order.orderDate,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          Text(
+                            order.orderId,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          Text(
+                            '${moneyFormat(order.total)}',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               ),
             ],
           ),
@@ -1131,9 +1330,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               int rodIndex,
             ) {
               String monthName = _monthlyChartData[groupIndex].monthName;
+<<<<<<< HEAD
               double revenue = double.parse(rod.toY.toStringAsFixed(2));
               return BarTooltipItem(
                 '$monthName\nDoanh số: ${moneyFormat(revenue)}',
+=======
+              String revenue = rod.toY.toStringAsFixed(2);
+              return BarTooltipItem(
+                '$monthName\nRevenue: \$$revenue',
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
                 const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -1147,6 +1352,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+<<<<<<< HEAD
   List<PieChartSectionData> _buildPieChartSections() {
     final totalQuantity = _bestSellingProducts.fold<int>(
       0,
@@ -1186,6 +1392,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
   Widget _buildRevenueComparison() {
     double maxRevenue = 0;
     String maxRevenueMonth = '';
@@ -1241,6 +1449,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _buildBestSellingProductsCard() {
+<<<<<<< HEAD
     final totalQuantity = _bestSellingProducts.fold<int>(
       0,
       (sum, item) => sum + (item['quantity'] as int),
@@ -1248,6 +1457,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     final hasData = _bestSellingProducts.isNotEmpty && totalQuantity > 0;
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
     return Card(
       elevation: 4,
       child: Padding(
@@ -1260,6 +1471,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
+<<<<<<< HEAD
 
             if (hasData) ...[
               // Biểu đồ tròn
@@ -1361,6 +1573,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ),
+=======
+            SizedBox(
+              height: 250,
+              child: ListView.builder(
+                itemCount: _bestSellingProducts.length,
+                itemBuilder: (context, index) {
+                  final product = _bestSellingProducts[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${product['productId']} - ${product['name']}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          '${product['quantity']} sản phẩm',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
           ],
         ),
       ),

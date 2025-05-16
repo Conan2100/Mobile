@@ -39,6 +39,10 @@ dependencies:
   google_sign_in: ^6.2.1
   cloud_firestore: ^5.6.7
   image_picker: ^1.1.2
+<<<<<<< HEAD
+=======
+  image_picker_web: ^3.0.6
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
   flutter_slidable: ^4.0.0
   shared_preferences: ^2.5.3
   charts_flutter: 0.11.0
@@ -53,9 +57,12 @@ dependencies:
   html: ^0.15.6
   js: ^0.7.2
   web_socket_channel: ^3.0.3
+<<<<<<< HEAD
   file_selector_windows: ^0.9.3+4
   permission_handler_windows: ^0.2.1
   file_selector: ^1.0.3
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
 
 
 dev_dependencies:

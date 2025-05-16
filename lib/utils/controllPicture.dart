@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import 'dart:convert';
 // import 'package:image/image.dart' as img;
 // import 'package:flutter/foundation.dart';
@@ -63,13 +64,19 @@
 //     return null;
 //   }
 // }
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
 import 'dart:convert';
 import 'package:image/image.dart' as img;
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+<<<<<<< HEAD
 
 // Thêm import có điều kiện cho Web
 // import 'conditional_import_stub.dart' if (dart.library.html) 'web_image_picker_stub.dart';
+=======
+import 'package:image_picker_web/image_picker_web.dart';
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
 
 class Base64ImageTool {
   // Chuyển ảnh (Uint8List) thành chuỗi base64 (dùng JPEG để tăng tốc)
@@ -81,8 +88,18 @@ class Base64ImageTool {
   static String _convertToBase64(Uint8List bytes) {
     final image = img.decodeImage(bytes);
     if (image == null) throw Exception("Không thể decode ảnh.");
+<<<<<<< HEAD
     final resized = img.copyResize(image, width: 200);
     final encoded = img.encodeJpg(resized, quality: 80);
+=======
+    // Resize ảnh nếu cần thiết (Ví dụ: 200x200)
+    final resized = img.copyResize(image, width: 200);
+    // Sử dụng JPEG thay vì PNG để tiết kiệm thời gian encode
+    final encoded = img.encodeJpg(
+      resized,
+      quality: 80,
+    ); // Giảm chất lượng 80 để giảm dung lượng
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
     return base64Encode(encoded);
   }
 
@@ -99,8 +116,14 @@ class Base64ImageTool {
   static Future<Uint8List?> pickImageUniversal() async {
     try {
       if (kIsWeb) {
+<<<<<<< HEAD
         // Nếu chạy trên web thì dùng method chọn ảnh web (đã tách riêng)
         return await _pickImageWeb();
+=======
+        // Web: dùng image_picker_web
+        final image = await ImagePickerWeb.getImageAsBytes();
+        return image;
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       } else {
         // Android/iOS: dùng image_picker
         final picker = ImagePicker();
@@ -115,6 +138,7 @@ class Base64ImageTool {
     return null;
   }
 
+<<<<<<< HEAD
   // Hàm chọn ảnh riêng cho Web - bạn cần tự triển khai trong file riêng hoặc gói thư viện khác
   static Future<Uint8List?> _pickImageWeb() async {
     // Tạm thời return null hoặc bạn triển khai chọn file web bằng html package hoặc file_picker
@@ -122,11 +146,17 @@ class Base64ImageTool {
     return null;
   }
 
+=======
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
   // Hàm chọn ảnh và chuyển sang base64 ngay lập tức
   static Future<String?> pickImageAndConvertToBase64() async {
     final bytes = await pickImageUniversal();
     if (bytes != null) {
+<<<<<<< HEAD
       return await imageToBase64Async(bytes);
+=======
+      return await imageToBase64Async(bytes); // Chuyển ảnh sang Base64
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
     }
     return null;
   }

@@ -836,6 +836,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _buildMenuItem('logout', Icons.logout, 'Đăng xuất'),
                     ],
               )
+<<<<<<< HEAD
               : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -855,6 +856,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ],
+=======
+              : IconButton(
+                icon: const Icon(Icons.login),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/login');
+                },
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               ),
         ],
       ),

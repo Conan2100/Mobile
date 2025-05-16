@@ -52,7 +52,11 @@ class _ProfileScreenUserState extends State<ProfileScreenUser> {
               .update({
                 'fullName': _fullNameController.text.trim(),
                 'shippingAddress': _addressController.text.trim(),
+<<<<<<< HEAD
                 'phoneNumber': _phoneController.text.trim(),
+=======
+                'phone': _phoneController.text.trim(),
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               });
 
           ScaffoldMessenger.of(context).showSnackBar(

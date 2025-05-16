@@ -83,11 +83,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           {
             'fullName': '',
             'shippingAddress': '',
+<<<<<<< HEAD
             'phoneNumber': '', // Khởi tạo số điện thoại
             'avatar': null,
           },
         );
         _loadUserData(); //load lại git  hiển thị
+=======
+            'phone': '', // Khởi tạo số điện thoại
+            'avatar': null,
+          },
+        );
+        _loadUserData(); //load lại để hiển thị
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
       }
     } catch (e) {
       print("Lỗi khi tải dữ liệu người dùng: $e"); // Log lỗi
@@ -110,7 +118,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .update({
               'fullName': _fullNameController.text.trim(),
               'shippingAddress': _addressController.text.trim(),
+<<<<<<< HEAD
               'phoneNumber': _phoneController.text.trim(), // Lưu số điện thoại
+=======
+              'phone': _phoneController.text.trim(), // Lưu số điện thoại
+>>>>>>> 2441dcbed4b1e29945001f9b38a9d478e09ac645
               'avatar': _avatarBase64,
             });
 
